@@ -87,8 +87,9 @@ share-links-active:
 url-pretty: "PeterPlucinski.com"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Misc --- #
-# Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-disqus: "peterplucinskiblog"
+# Fill in your 
+us shortname (NOT the userid) if you want to support Disqus comments
+disqus: ""
 
 # Fill in your Google Analytics ID to track your website using GA
 google_analytics: "UA-59995516-4"
