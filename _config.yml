@@ -89,7 +89,7 @@ url-pretty: "PeterPlucinski.com"  # eg. "deanattali.com/beautiful-jekyll"
 # --- Misc --- #
 # Fill in your 
 us shortname (NOT the userid) if you want to support Disqus comments
-disqus: ""
+disqus: "peterplucinskiblog"
 
 # Fill in your Google Analytics ID to track your website using GA
 google_analytics: "UA-59995516-4"
@@ -121,7 +121,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      comments: false  # add comments to all blog posts
+      comments: true  # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
   -
     scope:
