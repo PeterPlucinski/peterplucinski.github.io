@@ -4,13 +4,12 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Peter Plucinski. I'm a professional software developer and I live in Australia.
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+### My History
 
-What else do you need?
+I discovered a passion for computers when I got my first machine as a teenager. Early on, I attempted to teach myself C++ but I didn't get very far. After writing a few simple command line programs I decided I would try writing a windows application. I quickly became discouraged after realizing how much work it actually takes to create a windows interface in C++. This was my first, early experince with programming.
 
-### my history
+I had some fun adventures with computers in high school. After high school finished I decided I would do university and study something I knew nothing about but still found interesting and that could provide me with a decent career. So I studied finance and pursued a career in banking. For a number of years this was a good career and I learnt a great deal. However, I decided I didn't really want to spend another decade or so in the industry. I went back to learning programming and shortly after got hired as a developer.
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+I've been working as a professional PHP programmer since then.
