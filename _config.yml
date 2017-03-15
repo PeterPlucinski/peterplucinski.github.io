@@ -28,7 +28,7 @@ navbar-links:
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/img/avatar-icon.png"
+avatar: "/img/myAvatar.png"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
@@ -40,7 +40,7 @@ avatar: "/img/avatar-icon.png"
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Peter Plucinski
-  email: "youremail@domain.com"
+  email: "peter.plucinski@gmail.com"
   facebook: yourname  # eg. daattali
   github: peterplucinski    # eg. daattali
   twitter: peterplucinski   # eg. daattali
@@ -82,7 +82,7 @@ share-links-active:
 
 # How to display the link to the website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "PeterPlucinski.com"  # eg. "deanattali.com/beautiful-jekyll"
+url-pretty: "peterplucinski.com"  # eg. "deanattali.com/beautiful-jekyll"
 
 # --- Misc --- #
 # Fill in your 
