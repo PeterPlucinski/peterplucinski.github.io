@@ -8,7 +8,7 @@ The default place to "put things" in a Laravel project a lot of the time is the 
 
 [Maintain Slim PHP MVC Frameworks with a Layered Structure](https://www.toptal.com/php/maintain-slim-php-mvc-frameworks-with-a-layered-structure)
 
-A brief summary of the main points made by Elvira:
+A brief summary of the main points:
 
 - Why Active Record implementations like Laravel's Eloquent violate the Single Responsibility Principle of SOLID
 - Keeping controllers thin - a controller should only accept a request and return a response. It shouldn't contain buisness logic or data layer knowledge
