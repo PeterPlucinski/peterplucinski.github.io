@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Layered Architecture for Your Laravel Applications
+title: A Layered architecture approach to Laravel applications
 tags: ['php', 'laravel', 'architecture', 'mvc']
 ---
 ## A layered architecture approach to laravel applications
