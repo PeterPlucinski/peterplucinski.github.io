@@ -7,5 +7,7 @@ bigimg: /img/path.jpg
 published: false
 ---
 
-test
+# Why use a framework like Laravel
+
+![Structure](/img/bridge.jpg "Strucutre")
 
