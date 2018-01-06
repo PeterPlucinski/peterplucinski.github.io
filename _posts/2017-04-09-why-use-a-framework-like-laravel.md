@@ -4,7 +4,7 @@ title: Why use a framework like Laravel
 subtitle: Testing a subtitle
 tags: []
 bigimg: /img/path.jpg
-published: false
+published: true
 ---
 
 # Why use a framework like Laravel
