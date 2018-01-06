@@ -7,7 +7,7 @@ published: true
 
 ![Structure](/img/bridge.jpg "Strucutre")
 
-Frameworks like Laravel are very popular and have been around for a while in the PHP community. While there may be a few cases where using a framework doesn’t make sense, for the most part, there are significant benefits in using a framework to build a web application.
+Frameworks like Laravel are very popular and have been around for a while in the PHP community but they haven't been embraced by everyone and their benefits aren't always apparent. While there may be a few cases where using a framework doesn’t make sense, for the most part, there are significant benefits in using a framework to build a web application.
 
 I’ve been in a few discussions about frameworks and decided to write a blog post to present my opinion in one place.
 
