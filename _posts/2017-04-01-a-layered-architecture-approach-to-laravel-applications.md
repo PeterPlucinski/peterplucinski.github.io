@@ -1,7 +1,7 @@
 ---
 layout: post
 title: A layered architecture approach to Laravel applications
-tags: ['php', 'laravel', 'architecture', 'mvc']
+tags: ['php', 'laravel']
 ---
 
 The default place to "put things" in a Laravel project a lot of the time is the controller. I've seen and been guilty of creating "fat" controllers, which contain business logic, validation, knowledge of the data layer and relationships, etc. I've been testing different approaches and recently came across this great post by Elvira Sheina, a PHP developer on the Toptal platform.
