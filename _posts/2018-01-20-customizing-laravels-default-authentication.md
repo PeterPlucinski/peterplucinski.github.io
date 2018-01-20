@@ -5,8 +5,6 @@ tags: ['php', 'laravel']
 published: true
 ---
 
-## Introduction
-
 Laravel’s default authentication scaffolding is very handy. But what if we need to customize this to suit our own needs? This article addresses a few common cases where you may need to modify the default authentication provided to suit your requirements.
 
 At the time of writing the latest Laravel version is 5.5 so if you are using a different version things may change a little.
@@ -22,18 +20,18 @@ To accomplish this, we need to modify the `validator` method inside the `Registe
 
 Specifying minimum length is very easy. For the other two requirements we have to use regex. The validation method should look like this:
 
-```
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed|regex:/^(?=.*\d)(?=.*[A-Z]).+$/',
-        ],
-        [
-            'password.regex' => 'The password should contain at least one uppercase letter and at least one digit.'
-        ]);
-    }
-```
+{% highlight php %}
+protected function validator(array $data)
+{
+    return Validator::make($data, [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed|regex:/^(?=.*\d)(?=.*[A-Z]).+$/',
+    ],
+    [
+        'password.regex' => 'The password should contain at least one uppercase letter and at least one digit.'
+    ]);
+}
+{% endhighlight %}
 
 I have also added a custom message for the regex component of the password field to let the user know what is required. Without the custom error message the default message for the regex is “The password format is invalid.”
