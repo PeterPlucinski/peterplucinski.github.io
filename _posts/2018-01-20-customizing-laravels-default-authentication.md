@@ -35,3 +35,28 @@ protected function validator(array $data)
 ```
 
 I have also added a custom message for the regex component of the password field to let the user know what is required. Without the custom error message the default message for the regex is “The password format is invalid.”
+
+We also need to modify the `ResetPasswordController` class. The methods we want to modify are located inside the `ResetPasswords` trait so we can overwrite these methods in the `ResetPasswordController` class. The methods we want to overwrite are `rules` and `validationErrorMessages`. You can simply copy these methods from the trait into the `ResetPasswordController` class and make changes there.
+
+This may be obvious to some but it should be mentioned that the core files of Laravel (those residing in the “/vendor/” folder) should never be modified. Instead they can be overwritten where required.
+
+The modified methods should look like below and reside in the `ResetPasswordController` class.
+
+```
+protected function rules()
+{
+    return [
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|string|min:8|confirmed|regex:/^(?=.*\d)(?=.*[A-Z]).+$/',
+    ];
+}
+
+protected function validationErrorMessages()
+{
+    return [
+        'password.regex' => 'The password should contain at least one uppercase letter and at least one digit.'
+    ];
+}
+```
+
