@@ -20,7 +20,7 @@ To accomplish this, we need to modify the `validator` method inside the `Registe
 
 Specifying minimum length is very easy. For the other two requirements we have to use regex. The validation method should look like this:
 
-{% highlight php %}
+```
 protected function validator(array $data)
 {
     return Validator::make($data, [
@@ -32,6 +32,6 @@ protected function validator(array $data)
         'password.regex' => 'The password should contain at least one uppercase letter and at least one digit.'
     ]);
 }
-{% endhighlight %}
+```
 
 I have also added a custom message for the regex component of the password field to let the user know what is required. Without the custom error message the default message for the regex is “The password format is invalid.”
