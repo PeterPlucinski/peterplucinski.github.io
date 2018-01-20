@@ -38,7 +38,7 @@ I have also added a custom message for the regex component of the password field
 
 We also need to modify the `ResetPasswordController` class. The methods we want to modify are located inside the `ResetPasswords` trait so we can overwrite these methods in the `ResetPasswordController` class. The methods we want to overwrite are `rules` and `validationErrorMessages`. You can simply copy these methods from the trait into the `ResetPasswordController` class and make changes there.
 
-This may be obvious to some but it should be mentioned that the core files of Laravel (those residing in the “/vendor/” folder) should never be modified. Instead they can be overwritten where required.
+This may be obvious to some but it should be mentioned that the core files of Laravel (those residing in the `/vendor` folder) should never be modified. Instead they can be overwritten where required.
 
 The modified methods should look like below and reside in the `ResetPasswordController` class.
 
