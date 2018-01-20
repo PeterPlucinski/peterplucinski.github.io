@@ -1,17 +1,17 @@
 ---
 layout: post
-title: Customizing Larave's default authentication
+title: Customizing Laravel's default authentication
 tags: ['php', 'laravel']
 published: true
 ---
 
-##Introduction
+## Introduction
 
 Laravel’s default authentication scaffolding is very handy. But what if we need to customize this to suit our own needs? This article addresses a few common cases where you may need to modify the default authentication provided to suit your requirements.
 
 At the time of writing the latest Laravel version is 5.5 so if you are using a different version things may change a little.
 
-##Stronger password requirements
+## Stronger password requirements
 
 The default and only password requirement in Laravel is a minimum length of 6 characters. Lets say we wanted the following password requirements:
 * Minimum length of 8 characters
