@@ -9,7 +9,7 @@ published: true
 
 Laravel’s default authentication scaffolding is very handy but sometimes you will need to modify it to suit your owen needs. This article addresses a few common cases where you may need to modify the default authentication provided to suit your requirements.
 
-At the time of writing Laravel is at version is 5.5 so if you are using a different version things may change a little.
+At the time of writing Laravel is at version 5.5 so if you are using a different version things may change a little.
 
 ## Stronger password requirements
 
