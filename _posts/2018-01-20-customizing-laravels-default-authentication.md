@@ -76,4 +76,27 @@ To find the instances where this needs to be changed you could just search for `
 
 The first three are all controllers related to authentication and these are all located in `/app/Http/Controllers/Auth/`. The last one however if middleware and its located in `/app/Http/Middleware/`.
 
+The first 3 are straight forward:
+
+```
+// LoginController.php
+// ResetPasswordController.php
+// RegisterController.php
+
+protected $redirectTo = '/dashboard';
+```
+
+Lastly we need to modify the `handle` method of the `RedirectIfAuthenticated` middleware:
+
+```
+public function handle($request, Closure $next, $guard = null)
+{
+    if (Auth::guard($guard)->check()) {
+        return redirect('/dashboard');
+    }
+
+    return $next($request);
+}
+```
+
 
