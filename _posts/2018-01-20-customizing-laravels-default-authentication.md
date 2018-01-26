@@ -62,3 +62,18 @@ protected function validationErrorMessages()
 }
 ```
 
+## Redirect to a custom page after logging in
+
+After logging in, the default route a user is taken to is ‘/home’. Let’s say that we would like to send the user to a ‘/dashboard’ route after they are logged in.
+
+There are actually four places where this needs to be updated. It can be easy to miss one of these - especially the last one:
+* LoginController class
+* ResetPasswordController class
+* RegisterController class
+* RedirectIfAuthenticated class - middleware
+
+To find the instances where this needs to be changed you could just search for “/home” in the codebase.
+
+The first three are all controllers related to authentication and these are all located in `/app/Http/Controllers/Auth/`. The last one however if middleware and its located in `/app/Http/Middleware/`.
+
+
