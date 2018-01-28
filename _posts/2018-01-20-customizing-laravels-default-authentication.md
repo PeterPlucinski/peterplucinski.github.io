@@ -193,7 +193,7 @@ public function showRegistrationForm()
     return abort(404);
 }
 
-public function register(Request $request)
+public function register()
 {
     return abort(404);
 }
