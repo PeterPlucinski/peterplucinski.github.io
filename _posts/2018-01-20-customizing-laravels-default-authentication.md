@@ -104,7 +104,7 @@ public function handle($request, Closure $next, $guard = null)
 
 ## Registerting different user types
 
-Lets say that we would like to be able to register as a normal user or as an admin user.
+Lets say that we would like to be able to register as a normal user or as an "admin" user.
 
 Firstly we'll need to modify the `register.blade.php` view file located at `/resources/views/auth/`. We'll add a select form element underneath the password confirmation to allow selection of different user types. I've kept the style same as the original register view which comes with Laravel.
 
@@ -201,4 +201,4 @@ public function register()
 
 The `register` method is responsible for handling the POST request for user registration so its important the we override this method in addidion to the `showRegistrationForm` method which displays the form.
 
-I've used a 404 message but we could also redirect the user to the home page - `return redirect('/')`.
+I've used a 404 message but we could also redirect the user to the home page - `return redirect('/')`. If for some reason you are using the welcome page supplied with Laravel you will also want to remove the "Register" link.
