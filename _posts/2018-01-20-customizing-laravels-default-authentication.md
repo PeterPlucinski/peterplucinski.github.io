@@ -102,7 +102,7 @@ public function handle($request, Closure $next, $guard = null)
 ```
 
 
-## Registerting different user types
+## Registering different user types
 
 Lets say that we would like to be able to register as a normal user or as an "admin" user.
 
