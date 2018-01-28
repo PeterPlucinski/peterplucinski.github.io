@@ -199,6 +199,6 @@ public function register(Request $request)
 }
 ```
 
-The `register` method is responsible for handling the POST request for user registration so its important the we override this method in addidion to the `showRegistrationForm` method which displayes the form.
+The `register` method is responsible for handling the POST request for user registration so its important the we override this method in addidion to the `showRegistrationForm` method which displays the form.
 
-I've used the 404 message but we could also redirect to the home page - `return redirect('/')`.
+I've used a 404 message but we could also redirect the user to the home page - `return redirect('/')`.
