@@ -11,6 +11,7 @@ At the time of writing Laravel is at version 5.5 so if you are using a different
 
 ![Levers](/img/lever.jpg "Levers")
 
+
 ## Stronger password requirements
 
 The default and only password requirement in Laravel is a minimum length of 6 characters. Lets say we wanted the following password requirements:
@@ -62,6 +63,7 @@ protected function validationErrorMessages()
 }
 ```
 
+
 ## Redirect to a custom page after logging in
 
 After logging in, the default route a user is taken to is `/home`. Let’s say that we would like to send the user to a `/dashboard` route after they are logged in.
@@ -98,6 +100,7 @@ public function handle($request, Closure $next, $guard = null)
     return $next($request);
 }
 ```
+
 
 ## Registerting different user types
 
