@@ -109,13 +109,18 @@ Lets say that we would like to be able to register as a normal user or as an adm
 Firstly we'll need to modify the `register.blade.php` view file located at `/resources/views/auth/`. We'll add a select form element underneath the password confirmation to allow selection of different user types. I've kept the style same as the original register view which comes with Laravel.
 
 ```
-<div class="form-group">
+<div class="form-group{{ $errors->has('user_type') ? ' has-error' : '' }}">
     <label for="user_type" class="col-md-4 control-label">User Type</label>
     <div class="col-md-6">
         <select name="user_type" id="user_type" class="form-control" required>
             <option value="user">User</option>
             <option value="admin">Admin</option>
         </select>
+        @if ($errors->has('user_type'))
+            <span class="help-block">
+                <strong>{{ $errors->first('user_type') }}</strong>
+            </span>
+        @endif
     </div>
 </div>
 ```
@@ -137,6 +142,14 @@ public function up()
 }
 ```
 
+We also need to make sure that the `type` column is fillable by modyfing the `User` model in the `/app/` folder.
+
+```
+protected $fillable = [
+    'name', 'email', 'password', 'type'
+];
+```
+
 We need to add a `type` field to the `create` method of the `RegisterController` located in `/app/Http/Controllers/Auth/`.
 
 ```
@@ -151,12 +164,21 @@ protected function create(array $data)
 }
 ```
 
-We also need to make sure that the `type` column is fillable by modyfing the `User` model in the `/app/` folder.
+Lastly, we'll add some validation for `user_type`. We need to modify the `validator` method of the `RegisterController`. The other validation rules remain from the earlier section on stronger passwords.
 
 ```
-protected $fillable = [
-    'name', 'email', 'password', 'type'
-];
+protected function validator(array $data)
+{
+    return Validator::make($data, [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed|regex:/^(?=.*\d)(?=.*[A-Z]).+$/',
+        'user_type' => 'required|in:admin,user'
+    ],
+    [
+        'password.regex' => 'The password should contain at least one uppercase letter and at least one digit.'
+    ]);
+}
 ```
 
-One thing I haven't done is add validation for the `user_type` field. That's pretty much all that's needed to be able to register different user types.
+That's pretty much all that's needed to be able to register different user types.
