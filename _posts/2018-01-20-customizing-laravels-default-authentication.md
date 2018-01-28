@@ -156,3 +156,4 @@ protected $fillable = [
 ];
 ```
 
+One thing I haven't done is add validation for the `user_type` field. That's pretty much all that's needed to be able to register different user types.
