@@ -76,7 +76,7 @@ To find the instances where this needs to be changed you could just search for `
 
 The first three are all controllers related to authentication and these are all located in `/app/Http/Controllers/Auth/`. The last one however if middleware and its located in `/app/Http/Middleware/`.
 
-The first 3 are straight forward:
+The first 3 are straightforward:
 
 ```
 // LoginController.php
@@ -99,4 +99,60 @@ public function handle($request, Closure $next, $guard = null)
 }
 ```
 
+## Registerting different user types
+
+Lets say that we would like to be able to register as a normal user or as an admin user.
+
+Firstly we'll need to modify the `register.blade.php` view file located at `/resources/views/auth/`. We'll add a select form element underneath the password confirmation to allow selection of different user types. I've kept the style same as the original register view which comes with Laravel.
+
+```
+<div class="form-group">
+    <label for="user_type" class="col-md-4 control-label">User Type</label>
+    <div class="col-md-6">
+        <select name="user_type" id="user_type" class="form-control" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+        </select>
+    </div>
+</div>
+```
+
+Next, we'll add a `type` column to our users migration. Migrations are located in `/database/migrations/`.
+
+```
+public function up()
+{
+    Schema::create('users', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->string('password');
+        $table->string('type');
+        $table->rememberToken();
+        $table->timestamps();
+    });
+}
+```
+
+We need to add a `type` field to the `create` method of the `RegisterController` located in `/app/Http/Controllers/Auth/`.
+
+```
+protected function create(array $data)
+{
+    return User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+        'type' => $data['user_type']
+    ]);
+}
+```
+
+We also need to make sure that the `type` column is fillable by modyfing the `User` model in the `/app/` folder.
+
+```
+protected $fillable = [
+    'name', 'email', 'password', 'type'
+];
+```
 
