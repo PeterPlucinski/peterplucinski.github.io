@@ -182,3 +182,23 @@ protected function validator(array $data)
 ```
 
 That's pretty much all that's needed to be able to register different user types.
+
+## Disable registration
+
+You may want to completely disable the ability to register users. This is relatively simple. We need to override the `showRegistrationForm` and `register` methods of the `RegisterUsers` trait. We can override these methods inside the `RegisterController` located in `/app/Http/Controllers/Auth/`.
+
+```
+public function showRegistrationForm()
+{
+    return abort(404);
+}
+
+public function register(Request $request)
+{
+    return abort(404);
+}
+```
+
+The `register` method is responsible for handling the POST request for user registration so its important the we override this method in addidion to the `showRegistrationForm` method which displayes the form.
+
+I've used the 404 message but we could also redirect to the home page - `return redirect('/')`.
