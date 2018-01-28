@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why use a framework like Laravel
-tags: ['php', 'laravel', 'frameworks']
+tags: ['php', 'laravel']
 published: true
 ---
 
