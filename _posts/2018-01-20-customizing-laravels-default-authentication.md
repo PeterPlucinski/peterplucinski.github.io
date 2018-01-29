@@ -142,7 +142,7 @@ public function up()
 }
 ```
 
-We also need to make sure that the `type` column is fillable by modyfing the `User` model in the `/app/` folder.
+We also need to make sure that the `type` column is fillable by modifying the `User` model in the `/app/` folder.
 
 ```
 protected $fillable = [
