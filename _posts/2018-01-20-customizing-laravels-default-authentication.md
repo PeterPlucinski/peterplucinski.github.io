@@ -199,7 +199,7 @@ public function register()
 }
 ```
 
-The `register` method is responsible for handling the POST request for user registration so its important the we override this method in addidion to the `showRegistrationForm` method which displays the form.
+The `register` method is responsible for handling the POST request for user registration so its important the we override this method in addition to the `showRegistrationForm` method which displays the form.
 
 I've used a 404 message but we could also redirect the user to the home page - `return redirect('/')`. If for some reason you are using the welcome page supplied with Laravel you will also want to remove the "Register" link.
 
