@@ -14,7 +14,7 @@ At the time of writing Laravel is at version 5.5 so if you are using a different
 
 ## Stronger password requirements
 
-The default and only password requirement in Laravel is a minimum length of 6 characters. Lets say we wanted the following password requirements:
+The default and only password requirement in Laravel is a minimum length of 6 characters. Let's say we wanted the following password requirements:
 * Minimum length of 8 characters
 * At least one uppercase letter
 * At least one number
@@ -104,7 +104,7 @@ public function handle($request, Closure $next, $guard = null)
 
 ## Registering different user types
 
-Lets say that we would like to be able to register as a normal user or as an "admin" user.
+Let's say that we would like to be able to register as a normal user or as an "admin" user.
 
 Firstly we'll need to modify the `register.blade.php` view file located at `/resources/views/auth/`. We'll add a select form element underneath the password confirmation to allow selection of different user types. I've kept the style same as the original register view which comes with Laravel.
 
