@@ -9,6 +9,8 @@ In this tutorial I’ll cover how to setup JSON Web Token authentication using L
 
 The Laravel documentation covers the Laravel Passport feature which is an OAuth2 implementation and a little different.
 
+Source code can be found [here](https://github.com/PeterPlucinski/laravel-vue-jwt)
+
 ## Setting up JSON Web Token authentication with Laravel
 
 We’ll be using the popular library [tymondesigns/jwt-auth](https://github.com/tymondesigns/jwt-auth) by Sean Tymon.
