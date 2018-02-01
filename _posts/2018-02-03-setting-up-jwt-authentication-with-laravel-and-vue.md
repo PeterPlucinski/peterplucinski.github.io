@@ -21,7 +21,7 @@ Install the library. I've included the latest version in the command. Without in
 
 `composer require tymon/jwt-auth:1.0.0-rc.1`
 
-Publish the configuration file. This creates a `jwt.php` config file.
+Publish the configuration file. This creates a `config/jwt.php` config file.
 
 `php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
 
@@ -71,7 +71,7 @@ class User extends Authenticatable implements JWTSubject
 }
 ```
 
-Update the `auth.php` config file:
+Update the `config/auth.php` file:
 * set `api` as the default guard
 * use `jwt` for the api driver
 
@@ -94,7 +94,7 @@ Update the `auth.php` config file:
 ],
 ```
 
-Add api routes for authentication
+Add api routes for authentication.
 
 ```
 Route::group([
