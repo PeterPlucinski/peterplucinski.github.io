@@ -203,4 +203,4 @@ class AuthController extends Controller
 
 If you haven't already you will need to run `php artisan:migrate` to create the default users table which comes with Laravel.
 
-As a side note, I didn't need to update the `app.php` providers or alises sections for the library to work with Laravel 5.5.
+As a side note, I didn't need to update the `app.php` providers or aliases sections for the library to work with Laravel 5.5.
