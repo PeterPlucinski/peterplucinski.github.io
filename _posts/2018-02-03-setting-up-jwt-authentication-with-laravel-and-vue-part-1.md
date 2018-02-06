@@ -2,7 +2,7 @@
 layout: post
 title: Setting up JWT authentication with Laravel and Vue JS - Part 1
 tags: ['php', 'laravel', 'vuejs']
-published: false
+published: true
 ---
 
 In this tutorial I’ll cover how to setup JSON Web Token authentication using Laravel and Vue JS. The tutorial will have two parts. The first part will cover setting up Laravel to generate JSON Web Tokens. The second part will cover authentication using Vue JS in the context of an SPA.
