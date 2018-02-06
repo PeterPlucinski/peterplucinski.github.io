@@ -221,9 +221,9 @@ As a side note, I didn't need to update the `app.php` providers or aliases secti
 
 ### Testing token generation
 
-We can now test that token generation is working properly. To test I used Postman to send a POST request to `localhost:8000/api/auth/login` with a body made up of valid email and password. You will need to register a valid user before attempting this. I used Laravel's tinker to generate a new User instance in the database.
+We can now test that token generation is working properly. To test I used Postman to send a POST request to `localhost:8000/api/auth/login` with a body made up of a valid email and password. You will need to register a valid user before attempting this. I used Laravel's tinker to generate create a new instance of a User model in the database.
 
-The response I got is below.
+The response received is below.
 
 ```json
 {
@@ -235,11 +235,7 @@ The response I got is below.
 
 ### Setting up Laravel to function as an SPA (Single Page App)
 
-Firstly we'll need to create a blade template which contains the Vue JS application. I've create the file `/resources/views/app.blade.php` with the code below.
-
-A couple of notable points here:
-* We're adding the CSRF token for use by Vue JS as a meta tag
-* The `<router-view></router-view>` will be where our Vue JS app is displayed and we'll be using Vue's routing
+Firstly we'll need to create a blade template which contains the Vue JS application. I've created the file `/resources/views/app.blade.php` with the code below.
 
 ```
 <!doctype html>
@@ -262,6 +258,10 @@ A couple of notable points here:
 </body>
 </html>
 ```
+
+A couple of notable points.
+* We're adding the CSRF token for use by Vue JS as a meta tag
+* The `<router-view></router-view>` will be where our Vue JS app is displayed and we'll be using Vue's routing
 
 Second, we want to setup a route to point to this view inside `/routes/web.php`.
 
