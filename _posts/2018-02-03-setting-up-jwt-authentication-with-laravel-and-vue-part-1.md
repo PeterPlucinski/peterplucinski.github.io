@@ -19,7 +19,9 @@ I’ve reproduced the steps from the documentation by Sean with a couple of mino
 * [Laravel Installation](https://jwt-auth.readthedocs.io/en/develop/laravel-installation/)
 * [Quickstart](https://jwt-auth.readthedocs.io/en/develop/quick-start/)
 
-Install the library. I've included the latest version in the command. Without including the version number, my composer installed version 0.5.
+### Installation
+
+Install the library. I've included the latest version in the command. Without including the version number, on my machine composer installed version 0.5.
 
 `composer require tymon/jwt-auth:1.0.0-rc.1`
 
@@ -30,6 +32,8 @@ Publish the configuration file. This creates a `config/jwt.php` config file.
 Generate a secret key used to sign the tokens
 
 `php artisan jwt:secret`
+
+### User model
 
 Update the User model:
 * add use statement for `JWTSubject`
@@ -73,6 +77,8 @@ class User extends Authenticatable implements JWTSubject
 }
 ```
 
+### auth.php configuration file
+
 Update the `config/auth.php` file:
 * set `api` as the default guard
 * use `jwt` for the api driver
@@ -96,6 +102,8 @@ Update the `config/auth.php` file:
 ],
 ```
 
+### API authentication routes
+
 Add api routes for authentication.
 
 ```
@@ -113,6 +121,8 @@ Route::group([
 
 });
 ```
+
+### AuthController
 
 Create `AuthController.php` - this is the workhorse for our authentication and allows us to use Laravel's default authentication with the `jwt-auth` library.
 
@@ -206,3 +216,9 @@ class AuthController extends Controller
 If you haven't already you will need to run `php artisan:migrate` to create the default users table which comes with Laravel.
 
 As a side note, I didn't need to update the `app.php` providers or aliases sections for the library to work with Laravel 5.5.
+
+### Testing token generation
+
+We can now test that token generation is working properly. To test I used Postman to send a POST request to `localhost:8000/api/auth/login` with a body made up of valid email and password. You will need to register a valid user before attempting this. I used Laravel's tinker to generate a new User instance in the database.
+
+### Setting up Laravel to function as an SPA (Single Page App)
