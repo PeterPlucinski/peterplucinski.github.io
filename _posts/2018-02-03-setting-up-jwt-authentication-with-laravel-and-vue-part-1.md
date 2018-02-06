@@ -221,4 +221,14 @@ As a side note, I didn't need to update the `app.php` providers or aliases secti
 
 We can now test that token generation is working properly. To test I used Postman to send a POST request to `localhost:8000/api/auth/login` with a body made up of valid email and password. You will need to register a valid user before attempting this. I used Laravel's tinker to generate a new User instance in the database.
 
+The response I got is below.
+
+```json
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE1MTc5MDk1MTgsImV4cCI6MTUxNzkxMzExOCwibmJmIjoxNTE3OTA5NTE4LCJqdGkiOiJVbzdIVTl2cDVCWno2SFBsIiwic3ViIjoyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.9j4zPng0W1fFzStNQHYj1gyuMAUT1sIFfQcKgvXCX0M",
+    "token_type": "bearer",
+    "expires_in": 3600
+}
+```
+
 ### Setting up Laravel to function as an SPA (Single Page App)
