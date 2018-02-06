@@ -232,3 +232,41 @@ The response I got is below.
 ```
 
 ### Setting up Laravel to function as an SPA (Single Page App)
+
+Firstly we'll need to create a blade template which contains the Vue JS application. I've create the file `/resources/views/app.blade.php` with the code below.
+
+A couple of notable points here:
+* We're adding the CSRF token for use by Vue JS as a meta tag
+* The `<router-view></router-view>` will be where our Vue JS app is displayed and we'll be using Vue's routing
+
+```
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>Laravel</title>
+    
+</head>
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
+```
+
+Second, we want to setup a route to point to this view inside `/routes/web.php`.
+
+```
+Route::get('/', function () {
+    return view('app');
+});
+```
+
+That's all for part 1. In part 2 we'll explore how to setup the Vue JS app which will consume the API and allow as to authenticate using JSON Web Tokens.
