@@ -13,7 +13,9 @@ The approach here is different to what the Laravel documentation covers. The Lar
 
 Source code can be found [here](https://github.com/PeterPlucinski/laravel-vue-jwt).
 
-<img align="center" src="/img/actor.jpg" alt="Actors">
+<p align="center">
+<img src="/img/actor.jpg" alt="Actors">
+</p>
 
 ## Setting up JSON Web Token authentication with Laravel
 
