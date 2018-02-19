@@ -9,6 +9,8 @@ In this tutorial I’ll cover how to setup JSON Web Token authentication using L
 
 The approach here is different to what the Laravel documentation covers - the Laravel Passport feature which is an OAuth2 implementation.
 
+*The latest version of Laravel at the time of writing is v5.5 so if you are using another version things may be slightly different.*
+
 Source code can be found [here](https://github.com/PeterPlucinski/laravel-vue-jwt).
 
 ![Actors](/img/actor.jpg "Actors")
