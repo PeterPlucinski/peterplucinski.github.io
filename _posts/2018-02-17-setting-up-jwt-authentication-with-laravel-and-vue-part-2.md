@@ -2,7 +2,7 @@
 layout: post
 title: Setting up JWT authentication with Laravel and Vue JS - Part 2
 tags: ['php', 'laravel', 'vuejs']
-published: false
+published: true
 ---
 
 This second and final part will focus on setting up Vue JS. We'll be creating a login page, dashboard page which requires authentication, a dummy api backend route to serve data, vue router, vuex store, a guard for routes which require authentication and a logout component.
