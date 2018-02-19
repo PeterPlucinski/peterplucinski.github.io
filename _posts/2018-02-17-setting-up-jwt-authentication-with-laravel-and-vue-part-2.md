@@ -315,4 +315,54 @@ Create a `LogoutComponent.vue` file inside `/resources/assets/js/components/`:
 
 This is failry self explanatory. We remove the token, set `isLoggedIn` to false and redirect to the login page.
 
+## Guarding internal pages
 
+The final step is to setup a navigation guard for pages which require authentication. To do this we'll modify the `routes.js` file.
+
+Firstly, we also need to add the import statement for our store:
+
+```
+import store from './store'
+```
+
+Next, we'll add a meta property to our dashboard route. We can add the same property to any route requiring authentication.
+
+```
+{
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardComponent,
+    meta: { requiresAuth: true }  // add this
+},
+```
+
+
+Finally, to create the guard we'll be add a `beforeEach()` method to our router:
+
+```
+router.beforeEach((to, from, next) => {
+
+    // check if the route requires authentication and user is not logged in
+    if (to.matched.some(route => route.meta.requiresAuth) && !store.state.isLoggedIn) {
+        // redirect to login page
+        next({ name: 'login' })
+        return
+    }
+
+    // if logged in redirect to dashboard
+    if(to.path === '/login' && store.state.isLoggedIn) {
+        next({ name: 'dashboard' })
+        return
+    }
+
+    next()
+})
+```
+
+This method checks every route requested for the `requiresAuth: true` meta property. If a user is not logged in they will be redirected to the login route.
+
+If a user is already logged in and visits the login page, they will be redirected to the dashboard page.
+
+See the [Vue router documentation](https://router.vuejs.org/en/advanced/navigation-guards.html) for an explanation of `to`, `next` and `from`.
+
+I hope you have found this guide useful. Any comments or questions welcome.
