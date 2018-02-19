@@ -11,7 +11,7 @@ This second and final part will focus on setting up Vue JS. We'll be creating a 
 
 Run `npm install vue-router` to install.
 
-Under `/resources/assets/js/` create a `store.js` file:
+Under `/resources/assets/js/` create a `routes.js` file:
 
 ```
 import Vue from 'vue'
@@ -92,5 +92,37 @@ const app = new Vue({
 }).$mount('#app')
 ```
 
+## Settiup the Vuex store
+
+Install vuex by running `npm install vuex --save-dev`.
+
+Create a `store.js` file inside `/resources/assets/js/`. 
+
+In larger Vue applications, which can contain vuex modules, the convention tends to be to use `store/index.js` but I'm keeping it failry simple here.
+
+```
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+    state: {
+        isLoggedIn: !!localStorage.getItem('token')
+    },
+    mutations: {
+        loginUser (state) {
+            state.isLoggedIn = true
+        },
+        logoutUser (state) {
+            state.isLoggedIn = false
+        },
+    }
+})
+```
+
+Our store will allow us to login, logout and keep track of whether the user is logged in even if the user refreshed the page. One important point here is that I'm storing the JSON web token inside browser local storage. The other option would be to use a cookie for this. There are pros and cons to both approaches and you may want to consider the implications of each before using this code in a production app.
+
+The `isLoggendIn` property will get its initial value based on whether we have a token saved in local storage. This is so that when a user refreshes the page they can still remain logged in. The `!!` (not, not) operator simply coerces the call to `getItem()` to a Boolean.
 
 
