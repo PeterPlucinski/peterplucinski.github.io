@@ -9,7 +9,9 @@ Laravel’s default authentication scaffolding is very handy but sometimes you w
 
 At the time of writing Laravel is at version 5.5 so if you are using a different version things may change a little.
 
-![Levers](/img/lever.jpg "Levers")
+<p align="center">
+<img width="100%" src="/img/lever.jpg" alt="Actors">
+</p>
 
 
 ## Stronger password requirements
