@@ -56,7 +56,7 @@ const router = new VueRouter({
 export default router
 ```
 
-Here we are setting up four routes which will point to corresponding components. I have included the import statements for our components and we'll create these in a second. The root path `/` simply redirects to the login page.
+Here we're setting up four routes which will point to corresponding components. I have included the import statements for our components and we'll create these in a second. The root path `/` simply redirects to the login page.
 
 ## App component and the root instance of Vue JS
 
