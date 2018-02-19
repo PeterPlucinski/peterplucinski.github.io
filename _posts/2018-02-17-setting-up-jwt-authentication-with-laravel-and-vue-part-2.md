@@ -228,7 +228,7 @@ The styling for the login form is borrowed from the Bootsrap login example.
 
 The dashboard component will be our "internal" page. A use must login before being given access. We'll look at protecting this page in a minute.
 
-Create a `DashboardComponent.vue` inside `/resources/assets/js/components/`:
+Create a `DashboardComponent.vue` file inside `/resources/assets/js/components/`:
 
 ```
 <template>
@@ -291,5 +291,28 @@ Route::middleware('auth:api')->group(function () {
 ```
 
 This route is protected by the `auth:api` middleware which will check for a valid before returing the data. A 401 (Unauthorized) response will be returned if no valid token is present with the API request.
+
+## Logout component
+
+Create a `LogoutComponent.vue` file inside `/resources/assets/js/components/`:
+
+```
+<template>
+
+</template>
+
+<script>
+    import store from '../store'
+    export default {
+        mounted () {
+            localStorage.removeItem('token')
+            store.commit('logoutUser')
+            this.$router.push({ name: 'login' })
+        }
+    }
+</script>
+```
+
+This is failry self explanatory. We remove the token, set `isLoggedIn` to false and redirect to the login page.
 
 
