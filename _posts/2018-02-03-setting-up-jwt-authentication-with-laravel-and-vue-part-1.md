@@ -7,7 +7,7 @@ published: true
 
 In this tutorial I’ll cover how to setup JSON Web Token authentication using Laravel and Vue JS. The tutorial will have two parts. The first part will cover setting up Laravel to generate JSON Web Tokens. The [second part](http://blog.peterplucinski.com/setting-up-jwt-authentication-with-laravel-and-vue-part-2/) will cover authentication using Vue JS in the context of an SPA.
 
-The approach here is different to what the Laravel documentation covers - the Laravel Passport feature which is an OAuth2 implementation.
+The approach here is different to what the Laravel documentation covers. The Laravel Passport feature is an OAuth2 implementation.
 
 *The latest version of Laravel at the time of writing is v5.5 so if you are using another version things may be slightly different.*
 
@@ -33,9 +33,7 @@ Publish the configuration file. This creates a `config/jwt.php` config file.
 
 `php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"`
 
-Generate a secret key used to sign the tokens
-
-`php artisan jwt:secret`
+Run `php artisan jwt:secret` to enerate the secret key used to sign tokens.
 
 ### User model
 
@@ -223,7 +221,7 @@ As a side note, I didn't need to update the `app.php` providers or aliases secti
 
 ### Testing token generation
 
-We can now test that token generation is working properly. To test I used Postman to send a POST request to `localhost:8000/api/auth/login` with a body made up of a valid email and password. You will need to register a valid user before attempting this. I used Laravel's tinker to generate create a new instance of a User model in the database.
+We can now test that token generation is working properly. To test I used Postman to send a POST request to `localhost:8000/api/auth/login` with a body made up of a valid email and password. You will need to register a valid user before attempting this. I used Laravel's tinker to create a new instance of a User model in the database.
 
 The response received is below.
 
@@ -264,7 +262,7 @@ Firstly we'll need to create a blade template which contains the Vue JS applicat
 </html>
 ```
 
-A couple of notable points.
+A few of notable points:
 * We're adding the CSRF token for use by Vue JS as a meta tag
 * The `<router-view></router-view>` will be where our Vue JS app is displayed and we'll be using Vue's routing (see part 2)
 * `<app-component></app-component>` will be our parent component
@@ -278,4 +276,4 @@ Route::get('/', function () {
 });
 ```
 
-That's all for part 1. In [part 2](http://blog.peterplucinski.com/setting-up-jwt-authentication-with-laravel-and-vue-part-2/) we'll explore how to setup the Vue JS app which will consume the API and allow as to authenticate using JSON Web Tokens.
+That's all for part 1. In [part 2](http://blog.peterplucinski.com/setting-up-jwt-authentication-with-laravel-and-vue-part-2/) we'll explore how to setup the Vue JS app which will consume the API and allow us to authenticate using JSON Web Tokens.
