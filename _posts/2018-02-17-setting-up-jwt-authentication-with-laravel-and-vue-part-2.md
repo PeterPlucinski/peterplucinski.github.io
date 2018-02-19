@@ -7,7 +7,7 @@ published: false
 
 This second and final part will focus on setting up Vue JS. We'll be creating a login page, dashboard page which requires authentication, a dummy api backend route to serve data, vue router, vuex store, a guard for routes which require authentication and a logout component.
 
-## Setting up the Vue router
+## The Vue router
 
 Run `npm install vue-router` to install.
 
@@ -54,7 +54,7 @@ export default router
 
 Here we are setting up four routes which will point to corresponding components. I have included the import statements for our components and we'll create these in a second. The root path `/` simply redirects to the login page.
 
-## Creating the parent App component and setting up root instance of Vue JS
+## Parent App component and root instance of Vue JS
 
 Next we want to setup a parent component for our app. This will hold child components.
 
@@ -92,7 +92,7 @@ const app = new Vue({
 }).$mount('#app')
 ```
 
-## Settiup the Vuex store
+## Vuex store
 
 Install vuex by running `npm install vuex --save-dev`.
 
@@ -125,4 +125,101 @@ Our store will allow us to login, logout and keep track of whether the user is l
 
 The `isLoggendIn` property will get its initial value based on whether we have a token saved in local storage. This is so that when a user refreshes the page they can still remain logged in. The `!!` (not, not) operator simply coerces the call to `getItem()` to a Boolean.
 
+## Login component
 
+Next, we'll create our login component which shows the login page and allows us to submit login information to our API. The API will then send back a JSON web token if login is successfull.
+
+Create a `LoginComponent.vue` inside `/resources/assets/js/components/`:
+
+```
+<template>
+    <div class="text-center form-wrapper">
+
+        <form class="form-signin" v-on:submit.prevent="submitLogin">
+            <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus v-model="email">
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required v-model="password">
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+
+    </div>
+</template>
+
+<script>
+    import store from '../store'
+    export default {
+        data() {
+            return {
+                email: '',
+                password: '',
+                loginError: false,
+            }
+        },
+        methods: {
+            submitLogin() {
+                this.loginError = false;
+                axios.post('/api/auth/login', {
+                    email: this.email,
+                    password: this.password
+                }).then(response => {
+                    // login user, store the token and redirect to dashboard
+                    store.commit('loginUser')
+                    localStorage.setItem('token', response.data.access_token)
+                    this.$router.push({ name: 'dashboard' })
+                }).catch(error => {
+                    this.loginError = true
+                });
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .form-wrapper {
+        min-height: 100%;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+```
+
+A few noteworthy points. The `submitLogin()` method is called when a user attempts to login. This method:
+* Creates a post request using axios to our backend API authentication route `/api/auth/login`
+* On success, it "commits" a vuex store mutation `loginUse` which sets the `isLoggedIn` property to `true`
+* Saves the token returned from our API backend in browser local storage
+* Uses the Vue router to redirect to a protected dashboard page
+
+The styling for the login form is borrowed from the Bootsrap login example.
