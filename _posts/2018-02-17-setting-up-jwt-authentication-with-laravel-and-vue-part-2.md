@@ -223,3 +223,73 @@ A few noteworthy points. The `submitLogin()` method is called when a user attemp
 * Uses the Vue router to redirect to a protected dashboard page
 
 The styling for the login form is borrowed from the Bootsrap login example.
+
+## Dashboard component
+
+The dashboard component will be our "internal" page. A use must login before being given access. We'll look at protecting this page in a minute.
+
+Create a `DashboardComponent.vue` inside `/resources/assets/js/components/`:
+
+```
+<template>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>Dashboard</h1>
+
+                <p>
+                    <router-link :to="{ name: 'dashboard' }">Dashboard</router-link> |
+                    <router-link :to="{ name: 'login' }">Login</router-link> |
+                    <router-link :to="{ name: 'logout' }">Logout</router-link>
+                </p>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Dashboard</div>
+                    <div class="panel-body">
+                        <p>Data: {{ data }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                data: 'nothing'
+            }
+        },
+        mounted() {
+            axios.get('/api/dashboard', {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+            })
+            .then(response => {
+                this.data = response.data.data
+            }).catch(error => {
+
+            })
+        }
+    }
+</script>
+```
+
+This component includes router links for our routes. Likely the most notable part is the `mounted()` method where we make a call to the backend using our token stored from local storage.
+
+Create the backend dashboard route like below inside our `api.php` routes file:
+
+```
+Route::middleware('auth:api')->group(function () {
+    Route::get('dashboard', function () {
+        return response()->json(['data' => 'Test Data']);
+    });
+});
+```
+
+This route is protected by the `auth:api` middleware which will check for a valid before returing the data. A 401 (Unauthorized) response will be returned if no valid token is present with the API request.
+
+
