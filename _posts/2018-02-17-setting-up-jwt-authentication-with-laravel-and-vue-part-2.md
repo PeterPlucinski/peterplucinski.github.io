@@ -9,7 +9,7 @@ This second and final part will focus on setting up authentication with Vue JS. 
 
 [Part 1](http://blog.peterplucinski.com/setting-up-jwt-authentication-with-laravel-and-vue-part-1/)
 
-[Source code](https://github.com/PeterPlucinski/laravel-vue-jwt)
+[Source code on GitHub](https://github.com/PeterPlucinski/laravel-vue-jwt)
 
 ## The Vue router
 
