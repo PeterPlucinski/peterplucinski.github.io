@@ -11,7 +11,9 @@ I’ve been in a few discussions about frameworks and decided to write a blog po
 
 I’ll explain why you would want to consider a framework like Laravel and how frameworks can help developers write clean and maintainable code, while also potentially saving time.
 
-![Structure](/img/bridge.jpg "Strucutre")
+<p align="center">
+<img width="100%" src="/img/bridge.jpg" alt="Actors">
+</p>
 
 ## A well defined structure
 
