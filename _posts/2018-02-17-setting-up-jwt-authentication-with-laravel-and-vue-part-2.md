@@ -5,13 +5,17 @@ tags: ['php', 'laravel', 'vuejs']
 published: true
 ---
 
-This second and final part will focus on setting up Vue JS. We'll be creating a login page, dashboard page which requires authentication, a dummy api backend route to serve data, vue router, vuex store, a guard for routes which require authentication and a logout component.
+This second and final part will focus on setting up authentication with Vue JS. We'll be creating a login page, dashboard page which requires authentication, the vue router, the vuex store, a guard for routes which require authentication and a logout component.
+
+(Part 1)[http://blog.peterplucinski.com/setting-up-jwt-authentication-with-laravel-and-vue-part-1/)
+
+(Source code)[https://github.com/PeterPlucinski/laravel-vue-jwt]
 
 ## The Vue router
 
-Run `npm install vue-router` to install.
+Run `npm install vue-router` to install the Vue router.
 
-Under `/resources/assets/js/` create a `routes.js` file:
+Under `/resources/assets/js/` we'll create a `routes.js` file:
 
 ```
 import Vue from 'vue'
@@ -54,11 +58,11 @@ export default router
 
 Here we are setting up four routes which will point to corresponding components. I have included the import statements for our components and we'll create these in a second. The root path `/` simply redirects to the login page.
 
-## Parent App component and root instance of Vue JS
+## App component and the root instance of Vue JS
 
-Next we want to setup a parent component for our app. This will hold child components.
+Next we want to setup a parent component for our app. This will hold all of our child components.
 
-Create the file `/resources/assets/js/components/AppComponent.vue`
+Create the file `/resources/assets/js/components/AppComponent.vue`:
 
 ```
 <template>
@@ -80,7 +84,7 @@ The app component is used inside the `app.blade.php` Laravel template:
 </div>
 ```
 
-Next, we'll need to modify our `app.js` file to import our router and main App component:
+We'll also need to modify our `app.js` file to import our router and main App component into the Vue JS instance:
 
 ```
 import router from './routes.js';
@@ -92,13 +96,13 @@ const app = new Vue({
 }).$mount('#app')
 ```
 
-## Vuex store
+## The Vuex store
 
 Install vuex by running `npm install vuex --save-dev`.
 
 Create a `store.js` file inside `/resources/assets/js/`. 
 
-In larger Vue applications, which can contain vuex modules, the convention tends to be to use `store/index.js` but I'm keeping it failry simple here.
+In larger Vue applications, which can contain vuex modules, the convention tends to be to use `store/index.js` but I'm keeping things fairly simple here.
 
 ```
 import Vue from 'vue'
@@ -121,9 +125,11 @@ export default new Vuex.Store({
 })
 ```
 
-Our store will allow us to login, logout and keep track of whether the user is logged in even if the user refreshed the page. One important point here is that I'm storing the JSON web token inside browser local storage. The other option would be to use a cookie for this. There are pros and cons to both approaches and you may want to consider the implications of each before using this code in a production app.
+Our store will allow us to login and logout our user as well as keep track of whether the user is logged in even if the page is refresehd.
 
-The `isLoggendIn` property will get its initial value based on whether we have a token saved in local storage. This is so that when a user refreshes the page they can still remain logged in. The `!!` (not, not) operator simply coerces the call to `getItem()` to a Boolean.
+One important point here is that the token is stored in browser local storage. The other option would be to use a cookie for this. There are pros and cons to both approaches and you may want to consider their implications before using this code in a production application.
+
+The `isLoggendIn` property will get its initial value based on whether we have a token stored in local storage. This is so that when a user refreshes the page they will still remain logged in. The `!!` (not, not) operator simply coerces the call to `getItem()` to a Boolean.
 
 ## Login component
 
@@ -218,15 +224,15 @@ Create a `LoginComponent.vue` inside `/resources/assets/js/components/`:
 
 A few noteworthy points. The `submitLogin()` method is called when a user attempts to login. This method:
 * Creates a post request using axios to our backend API authentication route `/api/auth/login`
-* On success, it "commits" a vuex store mutation `loginUse` which sets the `isLoggedIn` property to `true`
+* On success, it "commits" a vuex store mutation `loginUser()` which sets the `isLoggedIn` property to `true`
 * Saves the token returned from our API backend in browser local storage
 * Uses the Vue router to redirect to a protected dashboard page
 
-The styling for the login form is borrowed from the Bootsrap login example.
+I've included the styling here. It's borrowed from the Bootstrap login example.
 
 ## Dashboard component
 
-The dashboard component will be our "internal" page. A use must login before being given access. We'll look at protecting this page in a minute.
+The dashboard component will be our "internal" page. A user must login before accessing this page. We'll look at protecting this page a little later.
 
 Create a `DashboardComponent.vue` file inside `/resources/assets/js/components/`:
 
@@ -246,7 +252,7 @@ Create a `DashboardComponent.vue` file inside `/resources/assets/js/components/`
                 <div class="panel panel-default">
                     <div class="panel-heading">Dashboard</div>
                     <div class="panel-body">
-                        <p>Data: {{ data }}</p>
+                        <p>Data: "{{ data }}"</p>
                     </div>
                 </div>
 
@@ -278,9 +284,9 @@ Create a `DashboardComponent.vue` file inside `/resources/assets/js/components/`
 </script>
 ```
 
-This component includes router links for our routes. Likely the most notable part is the `mounted()` method where we make a call to the backend using our token stored from local storage.
+This component includes router links for our routes. The most notable part is the `mounted()` method where we make a call to the backend using our token from local storage.
 
-Create the backend dashboard route like below inside our `api.php` routes file:
+In Laravel, we need to create the backend dashboard route inside our `api.php` routes file:
 
 ```
 Route::middleware('auth:api')->group(function () {
@@ -290,7 +296,7 @@ Route::middleware('auth:api')->group(function () {
 });
 ```
 
-This route is protected by the `auth:api` middleware which will check for a valid before returing the data. A 401 (Unauthorized) response will be returned if no valid token is present with the API request.
+This route is protected by the `auth:api` middleware which will check for a valid token before returing data. A 401 (Unauthorized) response will be returned if there is no valid token with the API call.
 
 ## Logout component
 
@@ -313,13 +319,13 @@ Create a `LogoutComponent.vue` file inside `/resources/assets/js/components/`:
 </script>
 ```
 
-This is failry self explanatory. We remove the token, set `isLoggedIn` to false and redirect to the login page.
+This should be fairly self explanatory. On logout, we remove the token, set `isLoggedIn` to `false` and redirect the user to the login page.
 
 ## Guarding internal pages
 
-The final step is to setup a navigation guard for pages which require authentication. To do this we'll modify the `routes.js` file.
+The final step is to setup a navigation guard for pages which require authentication using Vue JS. To do this we'll modify the `routes.js` file.
 
-Firstly, we also need to add the import statement for our store:
+Firstly, we need to add the import statement for our store:
 
 ```
 import store from './store'
@@ -337,7 +343,7 @@ Next, we'll add a meta property to our dashboard route. We can add the same prop
 ```
 
 
-Finally, to create the guard we'll be add a `beforeEach()` method to our router:
+Finally, to create the navigation guard we'll be adding a `beforeEach()` method to our router:
 
 ```
 router.beforeEach((to, from, next) => {
@@ -359,10 +365,12 @@ router.beforeEach((to, from, next) => {
 })
 ```
 
-This method checks every route requested for the `requiresAuth: true` meta property. If a user is not logged in they will be redirected to the login route.
+This method checks every route for the `requiresAuth:true` meta property. If a user is not logged in, they will be redirected to the login page.
 
 If a user is already logged in and visits the login page, they will be redirected to the dashboard page.
 
-See the [Vue router documentation](https://router.vuejs.org/en/advanced/navigation-guards.html) for an explanation of `to`, `next` and `from`.
+See the [navigation guard documentation](https://router.vuejs.org/en/advanced/navigation-guards.html) for an explanation of the `to`, `next` and `from` arguments.
 
-I hope you have found this guide useful. Any comments or questions welcome.
+That concludes this tutorial. We now have a working Vue SPA with JSON web token authentication.
+
+I hope you have found this guide useful. Any comments or questions are welcome.
