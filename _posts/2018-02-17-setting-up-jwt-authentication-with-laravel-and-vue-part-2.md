@@ -5,7 +5,7 @@ tags: ['php', 'laravel', 'vuejs']
 published: true
 ---
 
-This second and final part will focus on setting up authentication with Vue JS. We'll be creating a login page, dashboard page which requires authentication, the vue router, the vuex store, a guard for routes which require authentication and a logout component.
+This second and final part will focus on setting up authentication with Vue JS. We'll be creating a login page, dashboard page which requires authentication, the Vue router, the Vuex store, a guard for routes which require authentication and a logout component.
 
 (Part 1)[http://blog.peterplucinski.com/setting-up-jwt-authentication-with-laravel-and-vue-part-1/)
 
