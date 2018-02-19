@@ -31,8 +31,7 @@ const routes = [
     {
         path: '/dashboard',
         name: 'dashboard',
-        component: DashboardComponent,
-        meta: { requiresAuth: true }
+        component: DashboardComponent
     },
     {
         path: '/login',
@@ -53,7 +52,7 @@ const router = new VueRouter({
 export default router
 ```
 
-Here we are setting up four routes which will point to corresponding components. I have included the import statements for our components and we'll create these in a second.
+Here we are setting up four routes which will point to corresponding components. I have included the import statements for our components and we'll create these in a second. The root path `/` simply redirects to the login page.
 
 ## Creating the parent App component and setting up root instance of Vue JS
 
