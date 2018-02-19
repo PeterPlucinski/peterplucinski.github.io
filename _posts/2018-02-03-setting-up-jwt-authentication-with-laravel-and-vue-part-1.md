@@ -242,18 +242,21 @@ Firstly we'll need to create a blade template which contains the Vue JS applicat
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel</title>
-    
+    <title>Laravel Vue JWT Auth</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-        <router-view></router-view>
+        <app-component></app-component>
     </div>
-    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
@@ -261,7 +264,9 @@ Firstly we'll need to create a blade template which contains the Vue JS applicat
 
 A couple of notable points.
 * We're adding the CSRF token for use by Vue JS as a meta tag
-* The `<router-view></router-view>` will be where our Vue JS app is displayed and we'll be using Vue's routing
+* The `<router-view></router-view>` will be where our Vue JS app is displayed and we'll be using Vue's routing (see part 2)
+* `<app-component></app-component>` will be our parent component
+* Using Bootstrap for styling
 
 Second, we want to setup a route to point to this view inside `/routes/web.php`.
 
