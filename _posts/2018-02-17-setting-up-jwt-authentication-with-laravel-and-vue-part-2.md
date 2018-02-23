@@ -13,7 +13,7 @@ This second and final part will focus on setting up authentication with Vue JS. 
 
 ## The Vue router
 
-Run `npm install vue-router` to install the Vue router.
+Run `npm install vue-router --save-dev` to install the Vue router.
 
 Under `/resources/assets/js/` we'll create a `routes.js` file:
 
