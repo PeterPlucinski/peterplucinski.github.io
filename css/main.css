@@ -643,5 +643,33 @@ td.gutter {
 /* --- Social media sharing section --- */
 
 #social-share-section {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+/* --- Promo section at end of blog posts --- */
+
+.promo-section-outer {
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.75rem;
+  margin-bottom: 40px;
+  display: flex;
+}
+
+.promo-section-outer p {
+  margin: 0;
+}
+
+.promo-section-inner {
+  padding: 2rem;
+  width: 100%;
+}
+
+.promo-section-inner img {
+  display: block;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  padding: 4px;
+  margin: 2rem auto;
 }
