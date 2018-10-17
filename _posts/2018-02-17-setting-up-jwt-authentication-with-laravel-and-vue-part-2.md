@@ -125,7 +125,7 @@ export default new Vuex.Store({
 })
 ```
 
-Our store will allow us to login and logout our user as well as keep track of whether the user is logged in even if the page is refresehd.
+Our store will allow us to login and logout our user as well as keep track of whether the user is logged in even if the page is refreshed.
 
 One important point here is that the token is stored in browser local storage. The other option would be to use a cookie for this. There are pros and cons to both approaches and you may want to consider their implications before using this code in a production application.
 
