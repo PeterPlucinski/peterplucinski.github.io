@@ -11,6 +11,8 @@ This second and final part will focus on setting up authentication with Vue JS. 
 
 [Source code on GitHub](https://github.com/PeterPlucinski/laravel-vue-jwt)
 
+*Updated October 2018 - added a section to check for expired token to the end of the article*
+
 ## The Vue router
 
 Run `npm install vue-router --save-dev` to install the Vue router.
@@ -368,6 +370,44 @@ This method checks every route for the `requiresAuth:true` meta property. If a u
 If a user is already logged in and visits the login page, they will be redirected to the dashboard page.
 
 See the [navigation guard documentation](https://router.vuejs.org/en/advanced/navigation-guards.html) for an explanation of the `to`, `next` and `from` arguments.
+
+Another case we want to handle is when a user comes back to an authenticated/internal page like '/dashboard' and they have an expired token stored in their browser. What we want to do here, is check that their token is still valid. If not, we want to logout the user and redirect them to the login page.
+
+Here is one way to accomplish this. Below is an updated version of the AppComponent.vue file:
+
+```
+<template>
+    <router-view></router-view>
+</template>
+
+<script>
+    import store from '../store'
+    export default {
+    
+        created() {
+
+            if(localStorage.token) {
+                axios.get('/api/user', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('token')
+                    }
+                },
+                ).then(response => {
+                    store.commit('loginUser')
+                }).catch(error => {
+                    if (error.response.status === 401 || error.response.status === 403) {
+                        store.commit('logoutUser')
+                        localStorage.setItem('token', '')
+                        this.$router.push({name: 'login'})
+                    }
+
+                });
+            }
+
+        }
+    }
+</script>
+```
 
 That concludes this tutorial. We now have a working Vue SPA with JSON web token authentication.
 
