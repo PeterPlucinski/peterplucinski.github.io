@@ -9,11 +9,11 @@ published: false
 
 [Documentation](https://developers.google.com/sheets/api/quickstart/nodejs)
 
-## Part 1 - using Google's documentation and sample code, generating credentials.json and token.json
+## Part 1 - Using Google's documentation and sample code to generate credentials
 
 Initialize an empty project using `npm init`
 
-1. Follow step in the Google documentation to enable the Google API. This will let you select or create an empty project which will contatin your Google Sheets spreadsheet. You will need to download the `credentials.json` file your local project root.
+1. Follow step in the Google documentation to enable the Google API. This will let you select or create an empty project which will contatin your Google Sheets spreadsheet. You will need to download the `credentials.json` file to your local project root.
 
 For reference, my `credentials.json` file looks like this (sensitive values have been changed):
 
@@ -130,9 +130,9 @@ function listMajors(auth) {
 }
 ```
 
-4. You can place the sample code provided and run it using `node .` - when you do, you will be provided with a URL to click on in the command line. Follow the URL and you will need to give permission for your script to interact with your Google Sheets project via the API. You will receive a token which you will need to past into your command line. After this, the script will generate a `token.json` file in your project root.
+4. You can place the sample code provided in `index.js` and run it using `node .` - you will be provided with a URL to click on in the command line. Follow the URL and you will need to give permission for your script to interact with your Google Sheets project via the API. You will receive a token which you will need to paste back into your command line. After this, the script will generate a `token.json` file in your project root.
 
-My `token.json` file is below (again, sensitive values have been altered):
+My `token.json` file is reproduced below (again, sensitive values have been altered):
 
 ```
 {  
