@@ -2,7 +2,7 @@
 layout: post
 title: Writing to Google Sheets using Node JS
 tags: ['node', 'google-sheets', 'javascript']
-published: false
+published: true
 ---
 
 Recently, I was working on an IoT project and needed a simple way of sending data to a Google Sheets spreadsheet. Unfortunately a lot of the tutorials I found online were either outdated or recommended using libraries which no longer work with the Google Sheets API. So here is my tutorial. My approach was to follow the example from the documentation and add in a node server. The result is a quick and efficient script without any other dependencies needed.
