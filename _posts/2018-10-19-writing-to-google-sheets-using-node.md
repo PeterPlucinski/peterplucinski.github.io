@@ -5,6 +5,8 @@ tags: ['node', 'google-sheets', 'javascript']
 published: false
 ---
 
+Recently, I was working on an IoT project and needed a simple way of sending data to a Google Sheets spreadsheet. Unfortunately a lot of the tutorials I found online were either outdated or recommended using libraries which no longer work with the Google Sheets API. So here is my tutorial. My approach was to follow the example from the documentation and add in a node server. The result is a quick and efficient script without any other dependencies needed.
+
 [Source Code](https://github.com/PeterPlucinski/google-sheets-and-node)
 
 [Documentation](https://developers.google.com/sheets/api/quickstart/nodejs)
@@ -239,6 +241,8 @@ function saveDataAndSendResponse(data, googleSheetsObj, response) {
 ```
 
 The data argument will be a multidemeninal array, allowing you to send more than one row. Each inner array is a row in the spreadsheet.
+
+[Here](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append) is more documentation on appending data to a spreadsheet.
 
 Below is an example JSON request and resulting spreadsheet update.
 
