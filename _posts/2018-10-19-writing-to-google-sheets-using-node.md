@@ -248,6 +248,8 @@ Below is an example JSON request and resulting spreadsheet update.
 }
 ```
 
+<img src="/img/node-sheets-example.PNG" alt="Google Sheets example">
+
 Finally, we'll just need to update the first part of our script so that the `createServerAndGoogleSheetsObj()` callback is called instead of the default `listMajors()` callback.
 
 ```
