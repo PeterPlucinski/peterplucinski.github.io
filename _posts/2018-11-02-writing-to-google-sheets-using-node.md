@@ -242,7 +242,7 @@ function saveDataAndSendResponse(data, googleSheetsObj, response) {
 }
 ```
 
-The data argument will be a multidimensional array, allowing you to send more than one row. Each inner array is a row in the spreadsheet. Each element in an inner array will be a column. Subsequent POST requests will append data to the of the existing data.
+The data argument will be a multidimensional array, allowing you to send more than one row. Each inner array is a row in the spreadsheet. Each element in an inner array will be a column. Subsequent POST requests will append data to the end of the existing data.
 
 [Here](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append) is more documentation on appending data to a spreadsheet.
 
