@@ -13,7 +13,7 @@ published: false
 
 Initialize an empty project using `npm init`
 
-1. Follow step in the Google documentation to enable the Google API. This will let you select or create an empty project which will contatin your Google Sheets spreadsheet. You will need to download the `credentials.json` file to your local project root.
+1. Follow the first step in the Google documentation to enable the Google API. This will let you select or create a project for which to enable the Google Sheets API (It doesn't seem to matter which project you choose). You will need to download the `credentials.json` file to your local project root.
 
 For reference, my `credentials.json` file looks like this (sensitive values have been changed):
 
