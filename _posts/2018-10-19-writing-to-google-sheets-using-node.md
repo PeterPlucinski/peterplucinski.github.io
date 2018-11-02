@@ -142,6 +142,7 @@ My `token.json` file is reproduced below (again, sensitive values have been alte
    "token_type":"Bearer",
    "expiry_date":1122334455667
 }
+```
 
 ## Part 2 - Creating a node server endpoint and saving data to Google Sheets
 
