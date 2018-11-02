@@ -11,11 +11,13 @@ Recently, I was working on an IoT project and needed a simple way of sending dat
 
 [Documentation](https://developers.google.com/sheets/api/quickstart/nodejs)
 
+<p align="center"><img width="100%" src="/img/code.jpg" alt="Code"></p>
+
 ## Part 1 - Using Google's documentation and sample code to generate credentials
 
 Initialize an empty project using `npm init`
 
-1. Follow the first step in the Google documentation to enable the Google API. This will let you select or create a project for which to enable the Google Sheets API (it doesn't seem to matter which project you choose). You will need to download the `credentials.json` file to your local project root.
+1. Follow the first step in the Google [documentation](https://developers.google.com/sheets/api/quickstart/nodejs) to enable the Google API. This will let you select or create a project for which to enable the Google Sheets API (it doesn't seem to matter which project you choose). You will need to download the `credentials.json` file to your local project root.
 
 For reference, my `credentials.json` file looks like this (sensitive values have been changed):
 
