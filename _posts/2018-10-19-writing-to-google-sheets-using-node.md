@@ -36,7 +36,7 @@ For reference, my `credentials.json` file looks like this (sensitive values have
 
 2. Following the guide, install the Google APIs client side library: `npm install googleapis@27 --save`
 
-3. In step 3 of their guide, Google provides some useful exmaple code for working with their API. I've reproduced the code below. Note that this of course may change in the future. We'll be re-using some of this code and modyfying it for our purposes. The code does authentication and reads out some data stored in a sample spreadsheet.
+3. In step 3, there is some useful example code for working with the API. I've reproduced the code below. Note that this of course may change in the future. We'll be re-using some of this code and modifying it for our purposes. The example code does authentication and reads out some data stored in a sample spreadsheet.
 
 ```
 const fs = require('fs');
@@ -130,7 +130,7 @@ function listMajors(auth) {
 }
 ```
 
-4. You can place the sample code provided in `index.js` and run it using `node .` - you will be provided with a URL to click on in the command line. Follow the URL and you will need to give permission for your script to interact with your Google Sheets project via the API. You will receive a token which you will need to paste back into your command line. After this, the script will generate a `token.json` file in your project root.
+4. You can place the sample code provided in `index.js` and run it using `node .` - you will be provided with a URL to click on in the command line. Follow the URL and you will need to log in to your Google account and give permission for your script to interact with Google Sheets. You will receive a token which you will need to paste back into the command line. After this, the script will generate a `token.json` file in your project root.
 
 My `token.json` file is reproduced below (again, sensitive values have been altered):
 
