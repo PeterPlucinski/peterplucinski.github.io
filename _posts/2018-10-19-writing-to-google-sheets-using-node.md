@@ -142,3 +142,27 @@ My `token.json` file is reproduced below (again, sensitive values have been alte
    "token_type":"Bearer",
    "expiry_date":1122334455667
 }
+
+## Part 2 - Creating a node server endpoint and saving data to Google Sheets
+
+First, we'll need to include the node http component so we can create a node server.
+
+```
+const http = require('http');
+```
+
+We'll also modify the `SCOPES` config value so we can write to the spreadsheet. We'll also extract the spreadsheet ID into a config variable and create a `RANGE` variable which tells the API where to append values. Note, when modifying `SCOPES` you'll need to delete the exising `token.json` file and re-generate it. I'm also going to setup the server port as a config variable.
+
+```
+const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
+const TOKEN_PATH = 'token.json';
+const SPREADSHEET_ID = '12gsgDLjMMjDIRlbcaKuUYY8rth_ugIsH4zI-Ns98PFc';
+const RANGE = 'Sheet1';
+const PORT = 3000;
+```
+
+
+
+
+
+
