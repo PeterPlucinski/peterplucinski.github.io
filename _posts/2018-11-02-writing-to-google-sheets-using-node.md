@@ -154,7 +154,7 @@ First, we'll need to include the node http component so we can create a node ser
 const http = require('http');
 ```
 
-We'll also modify the `SCOPES` config value so we can write to the spreadsheet. We'll also extract the spreadsheet ID into a config variable and create a `RANGE` variable which tells the API where to append values. Note, when modifying `SCOPES` you'll need to delete the exising `token.json` file and re-generate it. I'm also going to setup the server port as a config variable.
+We'll also modify the `SCOPES` config value so we can write to the spreadsheet. Next, we'll extract the spreadsheet ID into a config variable and create a `RANGE` variable which tells the API where to append values. Note, when modifying `SCOPES` you'll need to delete the exising `token.json` file and re-generate it. Set the `SPREADSHEET_ID` to your desired spreadsheet. I'm also going to setup the server port as a config variable.
 
 ```
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
