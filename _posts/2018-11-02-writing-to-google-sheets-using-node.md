@@ -15,7 +15,7 @@ Recently, I was working on an IoT project and needed a simple way of sending dat
 
 Initialize an empty project using `npm init`
 
-1. Follow the first step in the Google documentation to enable the Google API. This will let you select or create a project for which to enable the Google Sheets API (It doesn't seem to matter which project you choose). You will need to download the `credentials.json` file to your local project root.
+1. Follow the first step in the Google documentation to enable the Google API. This will let you select or create a project for which to enable the Google Sheets API (it doesn't seem to matter which project you choose). You will need to download the `credentials.json` file to your local project root.
 
 For reference, my `credentials.json` file looks like this (sensitive values have been changed):
 
@@ -132,7 +132,7 @@ function listMajors(auth) {
 }
 ```
 
-4. You can place the sample code provided in `index.js` and run it using `node .` - you will be provided with a URL to click on in the command line. Follow the URL and you will need to log in to your Google account and give permission for your script to interact with Google Sheets. You will receive a token which you will need to paste back into the command line. After this, the script will generate a `token.json` file in your project root.
+You can place the sample code provided into `index.js` and run it using `node .` - you will be provided with a URL to click on in the command line. Follow the URL and you will need to log in to your Google account and give permission for your script to interact with Google Sheets. You will receive a token which you will need to paste back into the command line. The script will generate a `token.json` file in your project root.
 
 My `token.json` file is reproduced below (again, sensitive values have been altered):
 
@@ -164,7 +164,7 @@ const RANGE = 'Sheet1';
 const PORT = 3000;
 ```
 
-Next, we're going to remove the listMajors() example function, which reads data from a sample spreadhseet, and create a new callback which will create the node server.
+Next, we're going to remove the listMajors() example function, which reads data from a sample spreadhseet, and create a new callback which will create the node server:
 
 ```
 function createServerAndGoogleSheetsObj(oAuth2Client) {
@@ -207,7 +207,7 @@ function createServerAndGoogleSheetsObj(oAuth2Client) {
 }
 ```
 
-We are still passing in the authentication object so we can create a Google Sheets object for working with the API. Once data is sent to the endpoint via a POST request, we'll call `saveDataAndSendResponse()` which will send the data to Google Sheets and return a relevant response.
+We are still passing in the authentication object (created using the sample code) so we can create a Google Sheets object for working with the API. Once data is sent to the endpoint via a POST request, we'll call `saveDataAndSendResponse()` which will send the data to Google Sheets and return a relevant response.
 
 Below is the final function of our script. Its fairly self explanatory.
 
@@ -240,11 +240,11 @@ function saveDataAndSendResponse(data, googleSheetsObj, response) {
 }
 ```
 
-The data argument will be a multidemeninal array, allowing you to send more than one row. Each inner array is a row in the spreadsheet.
+The data argument will be a multidimensional array, allowing you to send more than one row. Each inner array is a row in the spreadsheet.
 
-[Here](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append) is more documentation on appending data to a spreadsheet.
+[Here](https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/append) is more documentation on appending data to a spreadsheet. Each element in an inner array will be a column. Subsequent POST requests will append data to the of the existing data.
 
-Below is an example JSON request and resulting spreadsheet update.
+Below is an example JSON request and the resulting spreadsheet update:
 
 ```
 {
@@ -257,7 +257,6 @@ Below is an example JSON request and resulting spreadsheet update.
 Finally, we'll just need to update the first part of our script so that the `createServerAndGoogleSheetsObj()` callback is called instead of the default `listMajors()` callback.
 
 ```
-// Load client secrets from a local file.
 fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Sheets API.
@@ -266,5 +265,12 @@ fs.readFile('credentials.json', (err, content) => {
 ```
 
 Full source code for the project can be found [here](https://github.com/PeterPlucinski/google-sheets-and-node).
+
+Potential improvements:
+1. Add authentication to the endpoint
+2. Append data to different parts of a spreadsheet. More [documentation](https://developers.google.com/sheets/api/guides/values#appending_values) on this
+3. Reading data from a spreadsheet
+
+Hope you have found the article helpful. Any questions or comments are welcome.
 
 
