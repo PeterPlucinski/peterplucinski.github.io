@@ -161,8 +161,92 @@ const RANGE = 'Sheet1';
 const PORT = 3000;
 ```
 
+Next, we're going to remove the listMajors() example function, which reads data from a sample spreadhseet, and create a new callback which will create the node server.
 
+```
+function createServerAndGoogleSheetsObj(oAuth2Client) {
+    
+    const sheets = google.sheets({ version: 'v4', auth: oAuth2Client });
 
+    const server = http.createServer((request, response) => {
 
+        if (request.method === 'POST') {
+            
+            // request object is a 'stream' so we must wait for it to finish
+            let body = '';
+            let bodyParsed = {};
+
+            request.on('data', chunk => {
+                body += chunk;
+            });
+
+            request.on('end', () => {
+                bodyParsed = JSON.parse(body);
+                saveDataAndSendResponse(bodyParsed.data, sheets, response);
+            });
+
+        } else {
+
+            // normal GET response for testing the endpoint
+            response.end('Request received');
+
+        }
+
+    });
+
+    server.listen(PORT, (err) => {
+        if (err) {
+            return console.log('something bad happened', err)
+        }
+        console.log(`server is listening on ${PORT}`)
+    });
+
+}
+```
+
+We are still passing in the authentication object so we can create a Google Sheets object for working with the API. Once data is sent to the endpoint via a POST request, we'll call `saveDataAndSendResponse()` which will send the data to Google Sheets and return a relevant response.
+
+Below is the final function of our script. Its fairly self explanatory.
+
+```
+function saveDataAndSendResponse(data, googleSheetsObj, response) {
+
+    // data is an array of arrays
+    // each inner array is a row
+    // each array element (of an inner array) is a column
+    let resource = {
+        values: data,
+    };
+
+    googleSheetsObj.spreadsheets.values.append({
+        spreadsheetId: SPREADSHEET_ID,
+        range: RANGE,
+        valueInputOption: 'RAW',
+        resource,
+    }, (err, result) => {
+        if (err) {
+            console.log(err);
+            response.end('An error occurd while attempting to save data. See console output.');
+        } else {
+            const responseText = `${result.data.updates.updatedCells} cells appended.`;
+            console.log(responseText);
+            response.end(responseText);
+        }
+    });
+
+}
+```
+
+The data argument will be a multidemeninal array, allowing you to send more than one row. Each inner array is a row in the spreadsheet.
+
+Below is an example JSON request and resulting spreadsheet update.
+
+```
+{
+	"data": [[1,2], [3,4]]
+}
+```
+
+Full source code for the project can be found [here](https://github.com/PeterPlucinski/google-sheets-and-node).
 
 
