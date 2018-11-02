@@ -268,7 +268,7 @@ Full source code for the project can be found [here](https://github.com/PeterPlu
 
 Potential improvements:
 1. Add authentication to the endpoint
-2. Append data to different parts of a spreadsheet. More [documentation](https://developers.google.com/sheets/api/guides/values#appending_values) on this
+2. Append data to different parts of a spreadsheet. More documentation on this [here](https://developers.google.com/sheets/api/guides/values#appending_values)
 3. Reading data from a spreadsheet
 
 Hope you have found the article helpful. Any questions or comments are welcome.
